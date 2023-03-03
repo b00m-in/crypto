@@ -82,11 +82,11 @@ func NewServerx(ucfg *util.Config) *Serverx {
         sc := &acme.Client{DirectoryURL: leprod2, Key: privKey}
         sman := &autocert.Manager{
                 Client: sc,
-                Email: ucfg.Sx.Email, //"rcs@m0v.in",
+                Email: ucfg.Sx.Email,
                 Prompt: autocert.AcceptTOS,
-                Cache: autocert.DirCache(ucfg.Sx.Cache), //("./b00m_tls"),
+                Cache: autocert.DirCache(ucfg.Sx.Cache),
                 RenewBefore: time.Duration(ucfg.Sx.RenewBefore)*time.Hour,
-                HostPolicy: autocert.HostWhitelist(ucfg.Sx.WhiteList...), //("m0v.in", "www.m0v.in", "madowatt.in", "pv.b00m.in", "b00m.in", "www.b00m.in"),
+                HostPolicy: autocert.HostWhitelist(ucfg.Sx.WhiteList...),
         }
         return &Serverx{c: sc, man: sman, cfg: ucfg}
 }
